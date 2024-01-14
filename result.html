@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener Result</title>
+    <style>
+        body {
+            background-image: radial-gradient(farthest-corner at 40px 40px,#f35 0%,#43e 100%);
+            font-family: 'Verdana', sans-serif;
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #;
+        }
+
+        div {
+            max-width: 500px;
+            background: #D2DFE9;
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            margin: auto;
+        }
+
+        h2 {
+            color: #333;
+            /* Dark text color */
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #0000FF;
+            /* Dark text color */
+        }
+
+        a {
+            color: #FF0000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    {% if short_url %}
+        <div>
+            <h2>URL Shortener Result</h2>
+            <p>Your URL has been shortened:</p>
+            <p>Shortened URL: <a href="{{ url_for('redirect_to_original', short_url=short_url) }}" target="_blank">{{ short_url }}</a></p>
+            <p>Original URL: {{ original_url }}</p>
+            <a href="{{ url_for('index') }}">Shorten Another URL</a>
+        </div>
+    {% elif error %}
+        <div>
+            <h2>URL Shortener Result</h2>
+            <p>{{ error }}</p>
+            <a href="{{ url_for('index') }}">Go back</a>
+        </div>
+    {% endif %}
+</body>
+</html>
